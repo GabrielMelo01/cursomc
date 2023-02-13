@@ -3,6 +3,7 @@ package com.gm_digital.cursomc.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.gm_digital.cursomc.dto.CategoriaDTO;
 import com.gm_digital.cursomc.services.exeptions.ObjectNotFoundExeption;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.gm_digital.cursomc.services.exeptions.DataIntegrityExeption;
@@ -56,6 +57,10 @@ public class CategoriaService {
     public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repository.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO objDto) {
+        return new Categoria(objDto.getId(), objDto.getNome());
     }
 
 }

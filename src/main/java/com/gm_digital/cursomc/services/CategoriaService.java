@@ -7,6 +7,9 @@ import com.gm_digital.cursomc.services.exeptions.ObjectNotFoundExeption;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.gm_digital.cursomc.services.exeptions.DataIntegrityExeption;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.gm_digital.cursomc.domain.Categoria;
@@ -48,6 +51,11 @@ public class CategoriaService {
 
     public List<Categoria> findAll(){
         return repository.findAll();
+    }
+
+    public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        return repository.findAll(pageRequest);
     }
 
 }

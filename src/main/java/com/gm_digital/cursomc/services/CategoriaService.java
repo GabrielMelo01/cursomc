@@ -3,6 +3,7 @@ package com.gm_digital.cursomc.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.gm_digital.cursomc.domain.Cliente;
 import com.gm_digital.cursomc.dto.CategoriaDTO;
 import com.gm_digital.cursomc.services.exeptions.ObjectNotFoundExeption;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,9 @@ public class CategoriaService {
     }
 
     public Categoria update(Categoria obj) {
-        findById(obj.getId());
-        return repository.save(obj);
+        Categoria newObj = findById(obj.getId()).get();
+        updateData(newObj, obj);
+        return repository.save(newObj);
     }
 
     public void delete(Integer id) {
@@ -61,6 +63,10 @@ public class CategoriaService {
 
     public Categoria fromDTO(CategoriaDTO objDto) {
         return new Categoria(objDto.getId(), objDto.getNome());
+    }
+
+    private void updateData(Categoria newObj, Categoria obj) {
+        newObj.setNome(obj.getNome());
     }
 
 }

@@ -20,9 +20,6 @@ public class CategoriaResource {
     @RequestMapping(value ="/{id}",method = RequestMethod.GET)
     public ResponseEntity<Optional<?>> find(@PathVariable Integer id){
         Optional<Categoria> obj = service.findById(id);
-        if (!obj.isPresent()) {
-            return ResponseEntity.status(404).body(Optional.of("A Categoria [ " + id + " ] não foi encontrada!"));
-        }
         return ResponseEntity.ok().body(obj);
     }
 
@@ -37,6 +34,12 @@ public class CategoriaResource {
     public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id){
         obj.setId(id);
         obj = service.update(obj);
+        return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value ="/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
      

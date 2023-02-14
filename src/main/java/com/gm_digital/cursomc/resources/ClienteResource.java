@@ -2,6 +2,7 @@ package com.gm_digital.cursomc.resources;
 
 import com.gm_digital.cursomc.domain.Cliente;
 import com.gm_digital.cursomc.dto.ClienteDTO;
+import com.gm_digital.cursomc.dto.ClienteNewDTO;
 import com.gm_digital.cursomc.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,13 +32,13 @@ public class ClienteResource {
         return ResponseEntity.ok().body(obj);
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDto){
-//        Cliente obj = service.fromDTO(objDto);
-//        obj = service.insert(obj);
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-//        return ResponseEntity.created(uri).build();
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto){
+        Cliente obj = service.fromDTO(objDto);
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
 
     @RequestMapping(value ="/{id}",method = RequestMethod.PUT)
     public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){

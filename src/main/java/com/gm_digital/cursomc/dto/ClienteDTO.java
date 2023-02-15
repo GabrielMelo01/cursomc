@@ -1,12 +1,14 @@
 package com.gm_digital.cursomc.dto;
 
 import com.gm_digital.cursomc.domain.Cliente;
+import com.gm_digital.cursomc.services.validation.ClienteUpdate;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@ClienteUpdate
 public class ClienteDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 

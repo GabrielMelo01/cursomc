@@ -1,6 +1,7 @@
 package com.gm_digital.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.gm_digital.cursomc.domain.enums.EstadoPagamento;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public abstract class Pagamento implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -35,8 +35,11 @@ public class PedidoService {
     @Autowired
     private ClienteService clienteService;
 
-    @Autowired
-    private EmailService emailService;
+    private final EmailService emailService;
+
+    public PedidoService(EmailService emailService) {
+        this.emailService = emailService;
+    }
 
     public Optional<Pedido> findById(Integer id) {
         return repository.findById(id);

@@ -1,8 +1,6 @@
 package com.gm_digital.cursomc.resources;
 
-import com.gm_digital.cursomc.domain.Categoria;
 import com.gm_digital.cursomc.domain.Pedido;
-import com.gm_digital.cursomc.dto.CategoriaDTO;
 import com.gm_digital.cursomc.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
